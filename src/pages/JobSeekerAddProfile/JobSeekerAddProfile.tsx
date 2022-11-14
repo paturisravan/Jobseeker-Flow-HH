@@ -358,7 +358,7 @@ const JobSeekerAddProfile: FC<any> = (props: any): ReactElement => {
             <div>
               <div>
                 <Typography
-                  variant="h4"
+                  variant="h6"
                   gutterBottom
                   component="div"
                   color="black"
@@ -395,13 +395,13 @@ const JobSeekerAddProfile: FC<any> = (props: any): ReactElement => {
             </div>
             <div>
               <Typography
-                variant="h4"
+                variant="h6"
                 gutterBottom
                 component="div"
                 color="black"
                 margin={"2vw 1vw 2vw 2vw"}
               >
-                Enter the Details Manually
+                Enter the Details
               </Typography>
             </div>
             <div style={{ marginLeft: "1vw" }}>

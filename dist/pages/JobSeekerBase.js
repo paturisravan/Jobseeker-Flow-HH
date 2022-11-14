@@ -12,16 +12,11 @@ var __assign = (this && this.__assign) || function () {
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import React, { useEffect } from "react";
 import JobSeekerProfileFlow from "./JobSeekerProfileFlow/JobSeekerProfileFlow";
-import TabWrapper, { TabPanel } from "../components/TabWrapper/TabWrapper";
+import { TabPanel } from "../components/TabWrapper/TabWrapper";
 import { Grid } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import "./JobSeekerBaseStyles.css";
-import Vetting from "./Vetting/Vetting";
 import Notification from "../components/Notification";
-import DuplicationFailed from "./DuplicationFailed/DuplicationFailed";
-import AllJs from "./AllJs/AllJs";
-import Manage from "./Manage/Manage";
-import IncompleteUploads from "./IncompleteUploads/IncompleteUploads";
 import { useAppSelector, useAppDispatch } from "../services/StoreHooks";
 import { initialAlertState } from "../modules/notificationState";
 var useStyles = makeStyles(function () { return ({}); });
@@ -47,61 +42,11 @@ var JobSeekerBase = function (props) {
     useEffect(function () {
         stepAndTabForAddProile();
     }, []);
-    useEffect(function () {
-        if (activeTabState.activeTab !== activeTab) {
-            setActiveTab(activeTabState.activeTab);
-        }
-    }, [activeTabState]);
-    var handleTabChange = function (newTab) {
-        setActiveTab(newTab);
-        dispatch({
-            type: "STEP_CHANGE",
-            data: {
-                step: 0,
-                tab: newTab,
-            },
-        });
-    };
     var jobSeekerTabs = [
         {
             title: "Add Profile",
             index: 0,
             component: (_jsx(JobSeekerProfileFlow, { setType: setType, setOpen: setOpen, setDataMessage: setDataMessage, contestId: id })),
-        },
-        {
-            title: "Duplication Failed",
-            index: 1,
-            component: _jsx(DuplicationFailed, { contestId: id }),
-        },
-        {
-            title: "Incomplete Uploads ",
-            index: 2,
-            component: _jsx(IncompleteUploads, { id: id }),
-        },
-        {
-            title: "All JS",
-            index: 3,
-            component: _jsx(AllJs, { contestId: id }),
-        },
-        {
-            title: "Vetting",
-            index: 4,
-            component: _jsx(Vetting, { id: id }),
-        },
-        {
-            title: "Interview",
-            index: 5,
-            component: _jsx("div", { children: "Page Not Avaliable" }),
-        },
-        {
-            title: "Manage Profiles",
-            index: 6,
-            component: _jsx(Manage, { id: id }),
-        },
-        {
-            title: "Broadcast",
-            index: 7,
-            component: _jsx("div", { children: "Page Not Avaliable" }),
         },
     ];
     var resetNotificationData = function () {
@@ -115,6 +60,6 @@ var JobSeekerBase = function (props) {
             },
         });
     };
-    return (_jsxs(Grid, __assign({ container: true, p: 2 }, { children: [_jsx(Notification, { open: open, type: type, message: dataMessage, setOpen: setOpen }), _jsx(TabWrapper, { tabIndex: activeTab, setTabIndex: handleTabChange, tabsList: jobSeekerTabs }), jobSeekerTabs.map(function (tab) { return (_jsx(TabPanel, __assign({ value: activeTab, index: tab.index, disablePadding: true }, { children: tab.component }), tab.index)); }), notifyDataState && (_jsx(Notification, { open: notifyDataState.enable, type: notifyDataState.type, message: notifyDataState.message, duration: notifyDataState.duration, setOpen: function () { return resetNotificationData(); } }))] })));
+    return (_jsxs(Grid, __assign({ container: true, p: 2 }, { children: [_jsx(Notification, { open: open, type: type, message: dataMessage, setOpen: setOpen }), jobSeekerTabs.map(function (tab) { return (_jsx(TabPanel, __assign({ value: activeTab, index: tab.index, disablePadding: true }, { children: tab.component }), tab.index)); }), notifyDataState && (_jsx(Notification, { open: notifyDataState.enable, type: notifyDataState.type, message: notifyDataState.message, duration: notifyDataState.duration, setOpen: function () { return resetNotificationData(); } }))] })));
 };
 export default JobSeekerBase;

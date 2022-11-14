@@ -1,15 +1,10 @@
 import React, { ReactElement, FC, useEffect } from "react";
 import JobSeekerProfileFlow from "./JobSeekerProfileFlow/JobSeekerProfileFlow";
-import TabWrapper, { TabPanel } from "../components/TabWrapper/TabWrapper";
+import { TabPanel } from "../components/TabWrapper/TabWrapper";
 import { Grid } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import "./JobSeekerBaseStyles.css";
-import Vetting from "./Vetting/Vetting";
 import Notification from "../components/Notification";
-import DuplicationFailed from "./DuplicationFailed/DuplicationFailed";
-import AllJs from "./AllJs/AllJs";
-import Manage from "./Manage/Manage";
-import IncompleteUploads from "./IncompleteUploads/IncompleteUploads";
 import { useAppSelector, useAppDispatch } from "../services/StoreHooks";
 import { initialAlertState } from "../modules/notificationState";
 
@@ -39,23 +34,6 @@ const JobSeekerBase: FC<any> = (props): ReactElement => {
     stepAndTabForAddProile();
   }, []);
 
-  useEffect(() => {
-    if (activeTabState.activeTab !== activeTab) {
-      setActiveTab(activeTabState.activeTab);
-    }
-  }, [activeTabState]);
-
-  const handleTabChange = (newTab) => {
-    setActiveTab(newTab);
-    dispatch({
-      type: "STEP_CHANGE",
-      data: {
-        step: 0,
-        tab: newTab,
-      },
-    });
-  };
-
   const jobSeekerTabs = [
     {
       title: "Add Profile",
@@ -68,41 +46,6 @@ const JobSeekerBase: FC<any> = (props): ReactElement => {
           contestId={id}
         />
       ),
-    },
-    {
-      title: "Duplication Failed",
-      index: 1,
-      component: <DuplicationFailed contestId={id} />,
-    },
-    {
-      title: "Incomplete Uploads ",
-      index: 2,
-      component: <IncompleteUploads id={id} />,
-    },
-    {
-      title: "All JS",
-      index: 3,
-      component: <AllJs contestId={id} />,
-    },
-    {
-      title: "Vetting",
-      index: 4,
-      component: <Vetting id={id} />,
-    },
-    {
-      title: "Interview",
-      index: 5,
-      component: <div>Page Not Avaliable</div>,
-    },
-    {
-      title: "Manage Profiles",
-      index: 6,
-      component: <Manage id={id} />,
-    },
-    {
-      title: "Broadcast",
-      index: 7,
-      component: <div>Page Not Avaliable</div>,
     },
   ];
 
@@ -126,11 +69,7 @@ const JobSeekerBase: FC<any> = (props): ReactElement => {
         message={dataMessage}
         setOpen={setOpen}
       />
-      <TabWrapper
-        tabIndex={activeTab}
-        setTabIndex={handleTabChange}
-        tabsList={jobSeekerTabs}
-      />
+
       {jobSeekerTabs.map((tab) => (
         <TabPanel
           value={activeTab}
