@@ -27,7 +27,7 @@ import JobSeekerAddProfile from "../../pages/JobSeekerAddProfile/JobSeekerAddPro
 var JobSeekerProfileFlow = function (props) {
     var changeStep = useAppSelector(function (state) { return state.tabsState; });
     var dispatch = useAppDispatch();
-    var _a = React.useState(changeStep.activeStep || 0), activeStep = _a[0], setActiveStep = _a[1];
+    var _a = React.useState(changeStep ? changeStep.activeStep : 0), activeStep = _a[0], setActiveStep = _a[1];
     var _b = React.useState({}), completed = _b[0], setCompleted = _b[1];
     var _c = React.useState(false), gotData = _c[0], setGotData = _c[1];
     var _d = useState(true), progressBar = _d[0], setProgressBar = _d[1];

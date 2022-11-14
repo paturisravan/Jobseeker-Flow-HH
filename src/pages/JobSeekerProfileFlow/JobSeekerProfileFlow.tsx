@@ -18,7 +18,7 @@ const JobSeekerProfileFlow: FC<any> = (props): ReactElement => {
   const dispatch = useAppDispatch();
 
   const [activeStep, setActiveStep] = React.useState(
-    changeStep.activeStep || 0
+    changeStep ? changeStep.activeStep : 0
   );
   const [completed, setCompleted] = React.useState<{
     [k: number]: boolean;
