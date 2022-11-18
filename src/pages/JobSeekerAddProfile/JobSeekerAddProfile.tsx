@@ -355,7 +355,7 @@ const JobSeekerAddProfile: FC<any> = (props: any): ReactElement => {
                 setOpen={() => resetNotificationData()}
               />
             )}
-            <div>
+            {/* <div>
               <div>
                 <Typography
                   variant="h6"
@@ -392,7 +392,7 @@ const JobSeekerAddProfile: FC<any> = (props: any): ReactElement => {
                   <hr className="line" />
                 </Typography>
               </div>
-            </div>
+            </div> */}
             <div>
               <Typography
                 variant="h6"
